@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QR Code generator</title>
+    <link href="Styles\bootstrap.css" rel="stylesheet" />
+  </head>
+  <body class="bg-dark">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">&nbsp;</div>
+      </div>
+      <div class="row">
+        <div class="col-4">&nbsp;</div>
+        <div class="col-4">
+          <input
+            type="text"
+            id="txtQr"
+            placeholder="Enter any text to convert to QR Code"
+            class="form-control"
+            onsubmit="GenerateQr()"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">&nbsp;</div>
+      </div>
+      <div class="row">
+        <div class="col-4">&nbsp;</div>
+        <div class="col-5">
+          <input
+            class="btn btn-primary"
+            type="submit"
+            id="btnQr"
+            value="Generate QR Code"
+            onclick="GenerateQR()"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">&nbsp;</div>
+      </div>
+
+      <div class="row">
+        <div class="col-4">&nbsp;</div>
+
+        <div class="col-3">
+          <div class="card bg-dark">
+            <img class="card-image-top" src="" id="qrCode" />
+
+            <div class="row">
+              <div class="col-12">&nbsp;</div>
+            </div>
+
+            <div>
+              <input
+                class="card-title form-control"
+                type="hidden"
+                id="resultQr"
+                readonly
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function GenerateQR() {
+        var message = document.getElementById("txtQr").value;
+        var qrcode = document.getElementById("qrCode");
+        var link =
+          "https://chart.googleapis.com/chart?cht=qr&chs=190x190&chl=" +
+          message;
+
+        qrcode.src = link;
+        document.getElementById("txtQr").value = "";
+
+        const element = document.getElementById("resultQr");
+        element.setAttribute("type", "text");
+        element.style.visibility = "visible";
+        document.getElementById("resultQr").value = message;
+      }
+    </script>
+  </body>
+</html>
